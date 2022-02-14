@@ -183,7 +183,7 @@ const fillDataInDB = async () => {
 	}
 	console.log(db);
 	const problemSchema = new mongoose.Schema({
-		constestId: String,
+		contestId: String,
 		index: String,
 		name: String,
 		tags: [String],

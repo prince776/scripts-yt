@@ -211,7 +211,7 @@ const fillDataInDB = async () => {
 				tags = problemData.tags;
 			}
 			const problem = new Problem({
-				constestId: problemData.contestId,
+				contestId: problemData.contestId,
 				index: problemData.index,
 				name: problemData.name,
 				tags: tags,

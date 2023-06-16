@@ -4,8 +4,8 @@ const fs = require('fs');
 const { start } = require('repl');
 const mongoose = require('mongoose');
 
-const observationTime = 2 * 365 * 24 * 60 * 60;
-const observationWindow = 6 * 31 * 24 * 60 * 60;
+const observationTime = 16 * 31 * 24 * 60 * 60;			// total span of 16 months-> broken into 4 of 4 months each. 
+const observationWindow = 4 * 31 * 24 * 60 * 60;
 const improvementThreshold = 150;
 
 const contestThreshold = 20;
@@ -167,14 +167,14 @@ const getAllEligibleProblems = async (startFrom, doSkipped = false) => {
 	console.log('Done');
 }
 
-// getAllEligibleProblems();
+getAllEligibleProblems();
 // getAllEligibleProblems(46014, true);
 
-const data1 = JSON.parse(fs.readFileSync('./checkpoints/checkpoint_46014.json'));
-const data2 = JSON.parse(fs.readFileSync('./checkpoints/checkpoint_48814.json'));
+// const data1 = JSON.parse(fs.readFileSync('./checkpoints/checkpoint_46014.json'));
+// const data2 = JSON.parse(fs.readFileSync('./checkpoints/checkpoint_48814.json'));
 
-console.log(Object.keys(data1.problemMap).length);
-console.log(Object.keys(data2.problemMap).length);
+// console.log(Object.keys(data1.problemMap).length);
+// console.log(Object.keys(data2.problemMap).length);
 
 const fillDataInDB = async () => {
 	const db = {
@@ -190,9 +190,10 @@ const fillDataInDB = async () => {
 		rating: Number,
 		frequency: Number,
 	});
+
 	const Problem = mongoose.model('Problem', problemSchema);
 
-	await mongoose.connect(`mongodb+srv://${db.user}:${db.pass}@mongodb-cluster.5gkbu.mongodb.net/competitive-programming?retryWrites=true&w=majority`);
+	await mongoose.connect(`mongodb+srv://i_pranav:HcMhHz8E5EumvEVm@cluster0.eowk9mo.mongodb.net/?retryWrites=true&w=majority`);
 	
 	const data = JSON.parse(fs.readFileSync('./problem-data.json'));
 	const { problemMap, problemFreq } = data;

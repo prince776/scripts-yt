@@ -139,7 +139,7 @@ const getAllEligibleProblems = async (startFrom, doSkipped = false) => {
   let problemMap = {};
   let problemFreq = {};
   let skippedUsers = [];
-  if (startFrom) {
+  if (startFrom!=null) {
     const checkpoint = JSON.parse(
       fs.readFileSync(`./checkpoints/checkpoint_${startFrom}.json`)
     );
@@ -207,7 +207,7 @@ const getAllEligibleProblems = async (startFrom, doSkipped = false) => {
 };
 
 // getAllEligibleProblems();
-getAllEligibleProblems(0, true);
+// getAllEligibleProblems(2973, true);
 
 // const data1 = JSON.parse(fs.readFileSync('./checkpoints/checkpoint_46014.json'));
 // const data2 = JSON.parse(fs.readFileSync('./checkpoints/checkpoint_48814.json'));
@@ -217,8 +217,8 @@ getAllEligibleProblems(0, true);
 
 const fillDataInDB = async () => {
   const db = {
-    user: process.env.DB_USER,
-    pass: process.env.DB_PASS,
+    user: "i_pranav",
+    pass: "HcMhHz8E5EumvEVm",
   };
   console.log(db);
   const problemSchema = new mongoose.Schema({
@@ -269,4 +269,4 @@ const fillDataInDB = async () => {
   await mongoose.disconnect();
 };
 
-// fillDataInDB();
+fillDataInDB();
